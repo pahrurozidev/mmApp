@@ -3,10 +3,10 @@ const jmlhTab = document.querySelector('.tabungan p span');
 const buttonTabung = document.getElementById('tabung');
 const buttonTarik = document.getElementById('tarik');
 
-const STORAGE_MONEY = 'STORAGE_MONEY';
+const MONEY_STORAGE = 'MONEY_STORAGE';
 let money = {};
 
-if (moneyFromLocal = localStorage.getItem(STORAGE_MONEY)) {
+if (moneyFromLocal = localStorage.getItem(MONEY_STORAGE)) {
     money = JSON.parse(moneyFromLocal);
 
     const modifNumber = (number) => {
@@ -31,7 +31,7 @@ function add() {
             alert('angka tidak boleh kosong !');
         } else {
             const result = (Number(userValue) + userInput);
-            localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+            localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
             window.location.reload();
         }
     }
@@ -49,7 +49,7 @@ function tarik() {
             alert('Jumlah tabungan anda kurang !');
         } else {
             const result = (Number(userValue) - userInput);
-            localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+            localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
             window.location.reload();
         }
     }
