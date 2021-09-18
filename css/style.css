@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: orangered;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.tabungan {
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 110px;
+}
+
+button {
+    cursor: pointer;
+}
+
+input, 
+button {
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid orangered;
+}
+
+input:hover, button:hover {
+    transform: scale(1.1);
+}
