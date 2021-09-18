@@ -24,8 +24,16 @@ if (moneyFromLocal = localStorage.getItem(STORAGE_MONEY)) {
 
 function add() {
     if (input.value) {
-        const result = (Number(jmlhTab.textContent) + Number(input.value));
-        localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+        const userValue = jmlhTab.textContent.replace(/\./g, "");
+        const userInput = Number(input.value);
+
+        if (userInput == 0) {
+            alert('angka tidak boleh kosong !');
+        } else {
+            const result = (Number(userValue) + userInput);
+            localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+            window.location.reload();
+        }
     }
 
     input.value = '';
@@ -34,9 +42,16 @@ function add() {
 
 function tarik() {
     if (input.value) {
-        const result = (Number(jmlhTab.textContent) - Number(input.value));
-        console.log(result);
-        localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+        const userValue = jmlhTab.textContent.replace(/\./g, "");
+        const userInput = Number(input.value);
+
+        if (userInput > userValue) {
+            alert('Jumlah tabungan anda kurang !');
+        } else {
+            const result = (Number(userValue) - userInput);
+            localStorage.setItem(STORAGE_MONEY, JSON.stringify(result));
+            window.location.reload();
+        }
     }
 
     input.value = '';
@@ -45,10 +60,8 @@ function tarik() {
 
 buttonTabung.addEventListener('click', el => {
     add();
-    window.location.reload();
 })
 
 buttonTarik.addEventListener('click', () => {
     tarik();
-    window.location.reload();
 })
