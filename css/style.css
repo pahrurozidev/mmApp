@@ -4,7 +4,7 @@
 }
 
 main {
-    background-color: orangered;
+    background-color: white;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -42,6 +42,11 @@ section {
     transition: all .6s;
 }
 
+.flash-message p {
+    font-size: 12px;
+    color: white;
+}
+
 .tabung {
     transform: translateY(0px);
 }
@@ -61,13 +66,20 @@ button {
     cursor: pointer;
 }
 
-input, 
+input,
 button {
     padding: 5px;
     border-radius: 20px;
-    border: 1px solid orangered;
+    border: .1rem solid orangered;
+    transition: all .3s;
 }
 
-input:hover, button:hover {
+input:hover {
+    transform: scale(1.5);
+}
+
+button:hover {
     transform: scale(1.1);
+    background-color: orangered;
+    color: white;
 }

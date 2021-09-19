@@ -28,11 +28,12 @@ function add() {
         const userValue = jmlhTab.textContent.replace(/\./g, "");
         const userInput = Number(input.value);
 
-        if (userInput == 0) {
+        if (userInput <= 0) {
             const p = document.createElement('p');
             p.innerText = "Nomail tidak boleh kosong !";
             flashMessage.appendChild(p);
             flashMessage.classList.add('tabung');
+            flashMessage.style.background = 'rgb(233, 86, 86)';
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
@@ -63,6 +64,7 @@ function tarik() {
             p.innerText = "Jumlah tabungan anda kurang !";
             flashMessage.appendChild(p);
             flashMessage.classList.add('tabung');
+            flashMessage.style.background = 'rgb(233, 86, 86)';
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
