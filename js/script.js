@@ -2,6 +2,7 @@ const input = document.querySelector('input[name=uang]');
 const jmlhTab = document.querySelector('.tabungan p span');
 const buttonTabung = document.getElementById('tabung');
 const buttonTarik = document.getElementById('tarik');
+const flashMessage = document.querySelector('.flash-message');
 
 const MONEY_STORAGE = 'MONEY_STORAGE';
 let money = {};
@@ -28,11 +29,23 @@ function add() {
         const userInput = Number(input.value);
 
         if (userInput == 0) {
-            alert('angka tidak boleh kosong !');
+            const p = document.createElement('p');
+            p.innerText = "Nomail tidak boleh kosong !";
+            flashMessage.appendChild(p);
+            flashMessage.classList.add('tabung');
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         } else {
             const result = (Number(userValue) + userInput);
             localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
-            window.location.reload();
+            const p = document.createElement('p');
+            p.innerText = "Berhasil Menabung";
+            flashMessage.appendChild(p);
+            flashMessage.classList.add('tabung');
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         }
     }
 
@@ -46,11 +59,23 @@ function tarik() {
         const userInput = Number(input.value);
 
         if (userInput > userValue) {
-            alert('Jumlah tabungan anda kurang !');
+            const p = document.createElement('p');
+            p.innerText = "Jumlah tabungan anda kurang !";
+            flashMessage.appendChild(p);
+            flashMessage.classList.add('tabung');
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         } else {
             const result = (Number(userValue) - userInput);
             localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
-            window.location.reload();
+            const p = document.createElement('p');
+            p.innerText = "Berhasil menarik tabungan";
+            flashMessage.appendChild(p);
+            flashMessage.classList.add('tabung');
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         }
     }
 
@@ -58,7 +83,7 @@ function tarik() {
 }
 
 
-buttonTabung.addEventListener('click', el => {
+buttonTabung.addEventListener('click', () => {
     add();
 })
 
