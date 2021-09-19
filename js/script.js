@@ -3,6 +3,8 @@ const jmlhTab = document.querySelector('.tabungan p span');
 const buttonTabung = document.getElementById('tabung');
 const buttonTarik = document.getElementById('tarik');
 const flashMessage = document.querySelector('.flash-message');
+const buttonClose = document.querySelector('.flash-message button');
+const svg = document.querySelector('svg');
 
 const MONEY_STORAGE = 'MONEY_STORAGE';
 let money = {};
@@ -29,24 +31,39 @@ function add() {
         const userInput = Number(input.value);
 
         if (userInput <= 0) {
+
+            const svg = /*html*/ `<svg style="background: red;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+            flashMessage.insertAdjacentHTML('afterbegin', svg);
+
             const p = document.createElement('p');
-            p.innerText = "Nomail tidak boleh kosong !";
+            p.innerText = "Nominal tidak boleh kosong !";
             flashMessage.appendChild(p);
+            flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
-            flashMessage.style.background = 'rgb(233, 86, 86)';
-            setTimeout(() => {
+
+            buttonClose.addEventListener('click', () => {
                 window.location.reload();
-            }, 2000);
+            })
         } else {
             const result = (Number(userValue) + userInput);
             localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
+
+            const svg = /*html*/ `<svg style="background: green;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-check">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>`;
+            flashMessage.insertAdjacentHTML("afterbegin", svg);
+
             const p = document.createElement('p');
             p.innerText = "Berhasil Menabung";
-            flashMessage.appendChild(p);
+            flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
-            setTimeout(() => {
+
+            buttonClose.addEventListener('click', () => {
                 window.location.reload();
-            }, 2000);
+            })
         }
     }
 
@@ -60,24 +77,38 @@ function tarik() {
         const userInput = Number(input.value);
 
         if (userInput > userValue) {
+            const svg = /*html*/ `<svg style="background: red;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+            // svg.style.background = 'red';
+            flashMessage.insertAdjacentHTML('afterbegin', svg);
+
             const p = document.createElement('p');
             p.innerText = "Jumlah tabungan anda kurang !";
-            flashMessage.appendChild(p);
+            flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
-            flashMessage.style.background = 'rgb(233, 86, 86)';
-            setTimeout(() => {
+
+            buttonClose.addEventListener('click', () => {
                 window.location.reload();
-            }, 2000);
+            })
         } else {
             const result = (Number(userValue) - userInput);
             localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
+
+            const svg = /*html*/ `<svg style="background: green;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-check">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>`;
+            flashMessage.insertAdjacentHTML("afterbegin", svg);
+
             const p = document.createElement('p');
             p.innerText = "Berhasil menarik tabungan";
-            flashMessage.appendChild(p);
+            flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
-            setTimeout(() => {
+
+            buttonClose.addEventListener('click', () => {
                 window.location.reload();
-            }, 2000);
+            })
         }
     }
 
