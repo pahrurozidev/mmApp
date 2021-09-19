@@ -25,7 +25,7 @@ if (moneyFromLocal = localStorage.getItem(MONEY_STORAGE)) {
     jmlhTab.innerText = moneyMondify;
 }
 
-function add() {
+function add(el) {
     if (input.value) {
         const userValue = jmlhTab.textContent.replace(/\./g, "");
         const userInput = Number(input.value);
@@ -42,12 +42,15 @@ function add() {
             flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
 
+            input.removeAttribute('required');
+            el.preventDefault();
             buttonClose.addEventListener('click', () => {
                 window.location.reload();
             })
         } else {
             const result = (Number(userValue) + userInput);
             localStorage.setItem(MONEY_STORAGE, JSON.stringify(result));
+
 
             const svg = /*html*/ `<svg style="background: green;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -61,6 +64,8 @@ function add() {
             flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
 
+            input.removeAttribute('required');
+            el.preventDefault();
             buttonClose.addEventListener('click', () => {
                 window.location.reload();
             })
@@ -71,7 +76,7 @@ function add() {
 }
 
 
-function tarik() {
+function tarik(el) {
     if (input.value) {
         const userValue = jmlhTab.textContent.replace(/\./g, "");
         const userInput = Number(input.value);
@@ -87,6 +92,24 @@ function tarik() {
             flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
 
+            input.removeAttribute('required');
+            el.preventDefault();
+            buttonClose.addEventListener('click', () => {
+                window.location.reload();
+            })
+        } else if (userInput <= 0) {
+            const svg = /*html*/ `<svg style="background: red;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="White" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+            flashMessage.insertAdjacentHTML('afterbegin', svg);
+
+            const p = document.createElement('p');
+            p.innerText = "Nominal tidak boleh kosong !";
+            flashMessage.appendChild(p);
+            flashMessage.insertBefore(p, buttonClose);
+            flashMessage.classList.add('tabung');
+
+            input.removeAttribute('required');
+            el.preventDefault();
             buttonClose.addEventListener('click', () => {
                 window.location.reload();
             })
@@ -106,6 +129,8 @@ function tarik() {
             flashMessage.insertBefore(p, buttonClose);
             flashMessage.classList.add('tabung');
 
+            input.removeAttribute('required');
+            el.preventDefault();
             buttonClose.addEventListener('click', () => {
                 window.location.reload();
             })
@@ -116,10 +141,10 @@ function tarik() {
 }
 
 
-buttonTabung.addEventListener('click', () => {
-    add();
+buttonTabung.addEventListener('click', el => {
+    add(el);
 })
 
-buttonTarik.addEventListener('click', () => {
-    tarik();
+buttonTarik.addEventListener('click', el => {
+    tarik(el);
 })
